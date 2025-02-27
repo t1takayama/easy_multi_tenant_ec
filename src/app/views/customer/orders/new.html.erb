@@ -1,0 +1,105 @@
+<% if not current_customer.cart_items.count == 0 %>
+  <%= form_with model: @order, url: orders_path, local: true, data: { turbo: false }  do |f| %>
+    <%= render "layouts/error_messages", resource: f.object %>
+    <h2>Order</h2>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+       	    <th>Quantity</th>
+      	    <th>Price</th>
+          <tr>
+        <thead>
+        <tbody>
+          <% current_customer.cart_items.each do |cart_item| %>
+            <tr>
+              <%= link_to product_path(cart_item.product_id) do %>
+                <td><%= cart_item.product.name %></td>
+              <% end %>
+              <td><%= cart_item.quantity %></td>
+              <td>¥<%= cart_item.total_price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <table>
+      <tbody>
+	<tr>
+          <th>Subtotal</th>
+          <td>
+            ¥<%= @subtotal %>
+          </td> 
+        </tr>
+        <tr>
+          <th>Postage</th>
+          <td>
+            ¥<%= @postage %>
+          </td>
+        </tr>
+        <tr>
+          <th>Billing Amount</th>
+          <td>
+            ¥<%= @billing_amuont %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Address</h2>
+    <% if current_customer.address.nil? %>
+      <div>
+	<p>Please set your shipping address.</p>
+        <%= link_to addresses_path do %>
+          Set shipping address.
+        <% end %>
+      </div>           
+    <% else %>
+      <table>
+	<tbody>
+	  <tr>
+	    <th><%= f.label :name %></th>
+            <td><%= current_customer.address.name %></td>
+	  </tr>
+	  <tr>
+            <th><%= f.label :prefecture %></th>
+            <td><%= current_customer.address.prefecture %></td>
+	  </tr>
+      	  <tr>
+            <th><%= f.label :postal_code %></th>
+            <td><%= current_customer.address.postal_code %></td>
+          </tr>
+      	  <tr>
+            <th><%= f.label :address %></th>
+            <td><%= current_customer.address.address %></td>
+          </tr>
+	</tbody>
+      </table>
+
+      <h2>Payment Method</h2>
+      <div>
+        <p>Bank Transfer</p>
+      </div>
+
+      <%= f.hidden_field :customer_id, value: current_customer.id %>
+      <%= f.hidden_field :postage, value: @postage %>
+      <%= f.hidden_field :billing_amount, value: @billing_amuont %>
+      <%= f.hidden_field :name, value: current_customer.address.name  %>
+      <%= f.hidden_field :prefecture, value: current_customer.address.prefecture %>
+      <%= f.hidden_field :postal_code, value: current_customer.address.postal_code  %>
+      <%= f.hidden_field :address, value: current_customer.address.address %>
+      <%= f.hidden_field :payment_method, value: 'bank' %>
+
+      <div>
+        <%= f.submit "Purchase" %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div>
+  <%= link_to root_path do %>
+    Find Products
+  <% end %>
+</div>

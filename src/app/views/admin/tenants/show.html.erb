@@ -1,0 +1,41 @@
+<h2>Tenant</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Name:</th>
+      <td><%= @tenant.name %></td>
+    </tr>
+    <tr>
+      <th>Status:</th>
+      <td><%= @tenant.status %></td>
+    </tr>
+    <tr>
+      <th>Domain:</th>
+      <td><%= @tenant.domain %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to edit_admin_tenant_path(@tenant) do %>
+    Edit Tenant
+  <% end %>
+</div>
+
+<div>
+  <h3>Owners</h3>
+  <ul>
+    <% @tenant.owners.each do |owner| %>
+      <%= link_to admin_tenant_owner_path(@tenant.id, owner) do %>
+        <li><%= owner.email %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <%= link_to new_admin_tenant_owner_path(@tenant) do %>
+    Add Owner
+  <% end %>
+</div>

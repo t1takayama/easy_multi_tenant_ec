@@ -1,0 +1,8 @@
+<h2>Order Detail</h2>
+
+<%= form_with model: @order, url: owner_order_path, local: true, data: { turbo: false }  do |f| %>
+  <%= f.label :status %>
+  <%= f.select :status, ['waiting_payment', 'confirm_payment', 'shipped', 'out_of_delivery', 'delivered'], selected: @order.status %>
+
+  <%= f.submit %>
+<% end %>

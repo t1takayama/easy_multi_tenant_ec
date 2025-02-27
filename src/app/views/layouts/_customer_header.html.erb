@@ -1,0 +1,34 @@
+<header>
+  <%= link_to root_path do %>
+    <h1>ECommerce</h1>
+  <% end %>
+  <% if customer_signed_in? %>
+    <nav>
+      <ul>
+        <li>
+          Signed in as <%= current_customer.name %>
+        </li>
+        <li>
+          <%= link_to addresses_path do %>
+          Address
+          <% end %>
+        </li>
+        <li>
+          <%= link_to cart_items_path do %>
+          Cart Items
+          <% end %>
+        </li>
+        <li>
+          <%= link_to sign_out_path, data: { turbo_method: :delete } do %>
+          Sign Out
+          <% end %>
+        </li>
+        <li>
+          <%= link_to orders_path do %>
+          Order History
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  <% end %>
+</header>

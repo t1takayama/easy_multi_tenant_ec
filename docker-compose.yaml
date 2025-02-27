@@ -1,0 +1,37 @@
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    command: bin/dev
+    volumes:
+      - ./src:/app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    environment:
+      - ADMIN_HOST=localhost
+      - OWNER_HOST=localhost
+      - BINDING=0.0.0.0  
+      - VIRTUAL_HOST=tenant1.localhost,tenant2.localhost
+      - VIRTUAL_PORT=3000
+      - SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub
+  db:
+    image: postgres:16.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./docker/db/data/:/var/lib/postgresql/data
+  selenium_chrome:
+    image: seleniarm/standalone-chromium
+    ports:
+      - "4444:4444"

@@ -1,0 +1,24 @@
+<div>
+  <%= image_tag @product.image %>
+</div>
+
+<h1><%= @product.name %></h1>
+<p><%= number_to_currency(@product.price, unit: "¥", strip_insignificant_zeros: true)%></p>
+
+<div>
+  <%= @product.description %>
+</div>
+
+<div>
+<% if @product.stock > 0 %>
+  在庫数(<%= @product.stock %>)
+<% else %>
+  在庫切れ
+<% end %>
+</div>
+
+<div>
+  <%= link_to edit_owner_product_path(@product) do %>
+    編集
+  <% end %>
+</div>

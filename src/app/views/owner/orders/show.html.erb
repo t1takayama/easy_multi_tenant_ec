@@ -1,0 +1,67 @@
+<h2>Order Detail</h2>
+
+<div>
+  <table>
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td><%= @order.name %> </td>
+      </tr>
+      <tr>
+        <th>postal_code</th>
+        <td><%= @order.postal_code %></td>
+      </tr>
+      <tr>
+        <th>address</th>
+        <td><%= @order.address %></td>
+      <tr>
+      </tr>
+      <tr>
+        <th>postage</th>
+        <td><%= @order.postage %></td>
+      </tr>
+      <tr>
+        <th>billing_amount</th>
+        <td><%= @order.billing_amount %></td>
+      </tr>
+      <tr>
+        <th>status</th>
+        <td><%= @order.status %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_details.each do |order_detail| %>
+        <tr>
+          <td>
+  	    <%= order_detail.product.name %>
+          </td>
+          <td>
+  	    <%= order_detail.quantity %>
+          </td>
+          <td>
+  	    <%= order_detail.price %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div>
+  <%= link_to edit_owner_order_path(@order) do %>
+    Edit
+  <% end %>
+</div>

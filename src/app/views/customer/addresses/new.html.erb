@@ -1,0 +1,6 @@
+<h2>New Address</h2>
+
+<%= form_with model: @address, url: addresses_path, data: { turbo: false }  do |f| %>
+  <%= render 'layouts/error_messages', resource: @address %>
+  <%= render partial: 'form', locals: { f: f } %>
+<% end %>

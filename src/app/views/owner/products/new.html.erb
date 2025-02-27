@@ -1,0 +1,6 @@
+<h2>New Product</h2>
+
+<%= form_with model: @product, url: owner_products_path, data: { turbo: false }  do |f| %>
+  <%= render 'layouts/error_messages', resource: f.object %>
+  <%= render partial: 'form', locals: { f: f } %>
+<% end %>

@@ -1,0 +1,25 @@
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :postal_code %>
+  <%= f.text_field :postal_code %>
+</div>
+
+<div>
+  <%= f.label :prefecture %>
+  <%= f.text_field :prefecture %>
+</div>
+
+<div>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+</div>
+
+<%= f.hidden_field :customer_id, value: current_customer.id %>
+
+<div>
+  <%= f.submit %>
+</div>

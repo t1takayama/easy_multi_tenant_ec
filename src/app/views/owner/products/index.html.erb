@@ -1,0 +1,41 @@
+<h2>Products</h2>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+	<th>Name</th>
+	<th>Price</th>
+	<th>Stock</th>
+      <tr>
+    <thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td>
+            <%= image_tag product.image, size: "100x100" %>
+          </td>
+          <td><%= product.name %></td>
+          <td>
+            <%= number_to_currency(product.price, unit: "¥", strip_insignificant_zeros: true) %>
+          </td>
+          <td><%= product.stock %></td>
+          <td>
+            <%= link_to edit_owner_product_path(product) do %>
+              Edit
+            <% end %>
+          <td>
+            <%= link_to owner_product_path(product), data: { "turbo-method": :delete, "turbo_confirm": "Are you sure?" } do %>Delete<% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <%= link_to new_owner_product_path do %>
+    Add Product
+  <% end %>
+</div>

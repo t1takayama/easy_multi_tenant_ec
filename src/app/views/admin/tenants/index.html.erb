@@ -1,0 +1,15 @@
+<h2>Tenants</h2>
+
+<ul>
+<% @tenants.each do |tenant| %>
+  <%= link_to admin_tenant_path(tenant) do %>
+    <li><%= tenant.name %></li>
+  <% end %>
+<% end %>
+</ul>
+
+<div>
+  <%= link_to new_admin_tenant_path do %>
+    Add Tenant
+  <% end %>
+</div>

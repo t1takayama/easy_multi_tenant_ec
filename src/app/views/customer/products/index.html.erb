@@ -1,0 +1,14 @@
+<h2>Products</h2>
+
+<% @products.each do |product| %>
+  <div style='float: left; margin: 0 20px'>
+  <%= link_to product_path(product) do %>
+    <%= image_tag product.image, size: '200x200' %>
+    <p><%= product.name %></p>
+    <p>¥<%= product.price %></p>
+    <% if not product.stock > 0 %>
+      <p>Out of Stock</p>
+    <% end %>
+  <% end %>
+  </div>
+<% end %>

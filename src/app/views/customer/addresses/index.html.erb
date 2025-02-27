@@ -1,0 +1,34 @@
+<h2>Address</h2>
+
+<% if current_customer.address.nil? %>
+  <div>
+    <p>Please set your shipping address</p>
+    <%= link_to new_address_path do %>
+      Create
+    <% end %>
+  </div>
+<% else %>
+  <div>
+    <p><%= current_customer.address.name %></p>
+  </div>
+  <div>
+    <p><%= current_customer.address.prefecture %></p>
+  </div>
+  <div>
+    <p><%= current_customer.address.postal_code %></p>
+  </div>
+  <div>
+    <p><%= current_customer.address.address %></p>
+  </div>
+
+  <div>
+    <%= link_to edit_address_path(current_customer.address) do %>
+      Update
+    <% end %>
+  </div>
+  <div>
+     <%= link_to address_path(current_customer.address), data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } do %>
+      Delete
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<h2>Edit Owner</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Email: </th>
+      <td><%= @owner.email %></td>
+    </tr>
+    <tr>
+      <th>Password: </th>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to edit_admin_tenant_owner_path(@tenant_id, @owner.id) do %>
+    Edit Owner
+  <% end %>
+</div>

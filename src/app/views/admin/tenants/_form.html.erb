@@ -1,0 +1,20 @@
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :normal %>
+  <%= f.radio_button :status, :normal %>
+  <%= f.label :closed %>
+  <%= f.radio_button :status, :closed %>
+</div>
+
+<div>
+  <%= f.label :domain %>
+  <%= f.text_field :domain %>
+</div>
+
+<div>
+  <%= f.submit %>
+</div>  

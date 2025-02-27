@@ -1,0 +1,27 @@
+<header>
+  <h1>Owner</h1>
+  <% if owner_signed_in? %>
+    <nav>
+      <ul>
+        <li>
+          Signed in as <%= current_owner.email %>
+        </li>
+        <li>
+          <%= link_to owner_orders_path do %>
+          Oders
+          <% end %>
+        </li>
+        <li>
+          <%= link_to owner_products_path do %>
+          Products
+          <% end %>
+        </li>
+        <li>
+          <%= link_to owner_sign_out_path, data: { turbo_method: :delete } do %>
+            Sign Out
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  <% end %>
+</header>

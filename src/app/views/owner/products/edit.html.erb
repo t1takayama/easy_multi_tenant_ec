@@ -1,0 +1,36 @@
+<h2>Edit</h2>
+
+<%= form_with model: @product, url: owner_product_path, local: true, data: { turbo: false }  do |f| %>
+  <%= render "layouts/error_messages", resource: f.object %>
+
+  <%= f.hidden_field :tenant_id, value: @tenant_id %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :stock %>
+    <%= f.number_field :stock %>
+  </div>
+
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

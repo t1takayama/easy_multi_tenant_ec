@@ -1,0 +1,8 @@
+<h2>Edit Tenant</h2>
+
+<div>
+  <%= form_with model: @tenant, url: admin_tenant_path, data: { turbo: false } do |f| %>
+    <%= render 'layouts/error_messages', resource: @tenant %>
+    <%= render partial: 'form', locals: { f: f } %>
+  <% end %>
+</div>

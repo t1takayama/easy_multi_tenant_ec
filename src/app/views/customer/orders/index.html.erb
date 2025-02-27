@@ -1,0 +1,46 @@
+<h2>Order History</h2>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>postal_code</th>
+        <th>prefecture</th>
+        <th>address</th>
+        <th>postage</th>
+        <th>billing_amount</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td>
+  	    <%= order.name %>
+          </td>
+          <td>
+  	    <%= order.postal_code %>
+          </td>
+          <td>
+  	    <%= order.address %>
+          </td>
+          <td>
+  	    <%= order.postage %>
+          </td>
+          <td>
+  	    <%= order.billing_amount %>
+          </td>
+          <td>
+  	    <%= order.status %>
+          </td>
+          <td>
+            <%= link_to order_path(order) do %>
+	      Detail
+	    <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
